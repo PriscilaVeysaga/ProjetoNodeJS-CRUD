@@ -23,18 +23,43 @@
 					<h5 class="card-title">Cadastrar - Agendamento de Potenciais Clientes</h5>
 					<p class="card-text">Sistema utilizado para agendamento de serviços.</p>
 					<p>
-						<form method="post" action="/cadastrar" id="form" name="form">
+						<form class="was-validated" method="post" action="/cadastrar" id="form" name="form">
 							<div class="form-group">
 								<label for="exampleFormControlInput1">Nome:</label>
 								<input type="text" class="form-control" name="nome" required id="nome">
 							</div>
 							<div class="form-group">
 								<label for="exampleFormControlInput1">Telefone:</label>
-								<input type="text" class="form-control" required name="telefone" id="telefone" placeholder="(xx)xxxxx-xxxx">
+								<input type="number" class="form-control" required name="telefone" id="telefone" placeholder="(xx)xxxxx-xxxx" pattern="\(\d{2}\)\d{5}-\d{4}"/> 
 							</div>
-							<div class="form-group">
+
+							<script>
+							// Adicione um evento de input para o campo de telefone
+							document.getElementById("telefone").addEventListener("input", function () {
+    						// Remova qualquer caractere que não seja um número
+    						this.value = this.value.replace(/[^0-9]/g, "");
+							});
+							</script>
+
+
+							<div class="mb-3">
+							<label for="exampleFormControlSelect1">Origem:</label>
+							<select class="form-select" required aria-label="select example">
+							<option value=""></option>
+									<option>Celular</option>
+									<option>Fixo</option>
+									<option>Whatsapp</option>
+									<option>Facebook</option>
+									<option>Instagram</option>
+									<option>Google Meu Negocio</option>
+							</select>
+							<div class="invalid-feedback">Origem é obrigatório</div>
+						</div>
+
+							{{!-- <div class="form-group">
 								<label for="exampleFormControlSelect1">Origem:</label>
-								<select class="form-control" required name="origem" id="origem">
+								<select class="form-control" required name="origem" id="origem" aria-label="select example">
+									<option></option>
 									<option>Celular</option>
 									<option>Fixo</option>
 									<option>Whatsapp</option>
@@ -42,14 +67,16 @@
 									<option>Instagram</option>
 									<option>Google Meu Negocio</option>
 								</select>
-							</div>
+								<div class="invalid-feedback">Example invalid select feedback</div>
+
+							</div> --}}
 							<div class="form-group">
 								<label for="exampleFormControlInput1">Data do Contato:</label>
 								<input type="date" class="form-control" required name="data_contato" id="data_contato">
 							</div>
 							<div class="form-group">
 								<label for="exampleFormControlTextarea1">Observação</label>
-								<textarea class="form-control" name="observacao" id="observacao" rows="3"></textarea>
+								<textarea class="form-control" name="observacao" required id="observacao" rows="3"></textarea>
 							</div>
 							<button type="submit" id="btnInserir" class="btn btn-primary">Cadastrar</button>
 						</form>

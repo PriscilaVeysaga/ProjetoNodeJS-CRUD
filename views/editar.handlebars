@@ -44,7 +44,7 @@
             <p>
                 {{#each post}}
                     {{#dataValues}}
-                        <form action="/atualizar" method="POST">
+                        <form class="was-validated" action="/atualizar" method="POST">
                             <div class="mb-3 text-start">
                                 <input type="hidden" name="id" class="form-control" id="nome" value="{{id}}">
                                 <label class="form-label">Nome:</label>
@@ -54,21 +54,35 @@
                                 <label class="form-label">Telefone:</label>
                                 <input type="number" name="telefone" class="form-control" id="telefone" value="{{telefone}}">
                             </div>
+
+							<script>
+							// Adicione um evento de input para o campo de telefone
+							document.getElementById("telefone").addEventListener("input", function () {
+    						// Remova qualquer caractere que não seja um número
+    						this.value = this.value.replace(/[^0-9]/g, "");
+							});
+							</script>
                             <div class="mb-3 text-start">
-                                <label class="form-label">Origem:</label>
-                                <select name="origem" class="form-select" aria-label="Default select example">
-                                    <option value="celular">Celular</option>
-                                    <option value="whatsapp">Whatsapp</option>
-                                    <option value="telefone_fixo">Telefone Fixo</option>
-                                </select>
-                            </div>
+							<label for="exampleFormControlSelect1">Origem:</label>
+							<select class="form-select" required aria-label="select example">
+							<option value=""></option>
+									<option>Celular</option>
+									<option>Fixo</option>
+									<option>Whatsapp</option>
+									<option>Facebook</option>
+									<option>Instagram</option>
+									<option>Google Meu Negocio</option>
+							</select>
+							<div class="invalid-feedback">Origem é obrigatório</div>
+						</div>
+                        
                             <div class="mb-3 text-start">
                                 <label class="form-label">Data do Contato:</label>
                                 <input type="date" name="data_contato" class="form-control" id="data_contato" aria-describedby="emailHelp" value="{{data_contato}}">
                             </div>
                             <div class="mb-3 text-start">
                                 <label class="form-label">Observação:</label>
-                                <textarea name="observacao" class="form-control" placeholder="" id="observacao" style="height: 100px">{{observacao}}</textarea>
+                                <textarea name="observacao" class="form-control" placeholder="" required id="observacao" style="height: 100px">{{observacao}}</textarea>
                             </div>
                             <div class="mb-3 text-start">
                                 <button type="submit" class="btn btn-primary">Atualizar</button>

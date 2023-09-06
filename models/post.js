@@ -5,7 +5,7 @@ const Agendamentos = db.sequelize.define("agendamentos", {
         type: db.Sequelize.STRING
     },
     telefone:{
-        type: db.Sequelize.STRING
+        type: db.Sequelize.NUMBER
     },
     origem:{
         type: db.Sequelize.STRING
